@@ -6,7 +6,7 @@ Lets try to create a new certificate on our own and replace the default one. Thi
     
     Then copy it to the Apache server default location:
     
-    `sudo cp server.key /opt/bitnami/apache/conf/server.key`{{execute}}
+    `sudo cp server.key /opt/bitnami/apache2/conf/server.key`{{execute}}
     
 2. You can try to restart the server now and check if it is able to start:
 
@@ -20,7 +20,7 @@ Lets try to create a new certificate on our own and replace the default one. Thi
     
     `cd /opt/bitnami/apache2/conf`{{execute}}
     `sudo openssl x509 -noout -text -in server.crt -modulus | grep Modulus`{{execute}}
-    `sudo openssl x509 -noout -text -in server.key -modulus | grep Modulus`{{execute}}
+    `sudo openssl rsa -noout -text -in server.key -modulus | grep Modulus`{{execute}}
     
     
 3. Lets create a new certificate that matches with the SSL key we just generated. You should use the domain name in the "Common Name" option.
@@ -30,11 +30,11 @@ Lets try to create a new certificate on our own and replace the default one. Thi
     
     Once you generated the Certificate request, you should to the certificate authority. When the certificate authority completes their checks (and probably received payment from you), they will hand over your new certificate to you. In our example we will create a self-signed certificate valid for 1 year.
     
-    `openssl x509 -in cert.csr -out server.crt -req -signkey server.key -days 365`
+    `openssl x509 -in cert.csr -out server.crt -req -signkey server.key -days 365`{{execute}}
     
 4. Now we have the certificate already created so we can configure Apache to use it:
 
-    `sudo cp sever.crt /opt/bitnami/apache/conf/server.crt`{{execute}}
+    `sudo cp server.crt /opt/bitnami/apache2/conf/server.crt`{{execute}}
     `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}
     
     

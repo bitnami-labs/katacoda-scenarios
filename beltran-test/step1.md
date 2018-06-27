@@ -12,7 +12,7 @@ Lets check the status of the server and the current SSL configuration.
     
     It is configured with a self signed certificate by default. That means the browser will throw an error any time someone visit your new website. You can also see the error in the Apache error log file:
     
-    `tail /opt/bitnami/apache2/logs/error.log`{{execute}}
+    `tail /opt/bitnami/apache2/logs/error_log`{{execute}}
     
     In this case you can see the server certificate does NOT include an ID which matches the server name.
     
