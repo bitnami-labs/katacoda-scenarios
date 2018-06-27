@@ -10,11 +10,11 @@ Lets try to create a new certificate on our own and replace the default one. Thi
     
 2. You can try to restart the server now and check if it is able to start:
 
-    `sudo /opt/bitnami/ctscript.sh restart apache`{{execute}}
+    `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}
     
     It was not possible to start the server, lets check the exact error in the log:
     
-    `tail /opt/bitnami/apache2/logs/error.log`{{execute}}
+    `tail /opt/bitnami/apache2/logs/error_log`{{execute}}
     
     The issue is the key and the cert does not match. It is also possible to check if they match with the following commands:
     
@@ -39,5 +39,5 @@ Lets try to create a new certificate on our own and replace the default one. Thi
     
 5. We can verify the new certificate in Apache has the correct content:
 
-    `openssl s_client -showcerts -connect localhost:443`
+    `openssl s_client -showcerts -connect localhost:443 | more`{{execute}}
     

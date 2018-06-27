@@ -1,19 +1,20 @@
 Once the certificate is working properly, it is a common practise to redirect all the traffic to HTTPS:
 
-    `curl http://localhost -L --progress-bar | grep site-title`{{execute}}
+`curl http://localhost -L --progress-bar | grep site-title`{{execute}}
 
 1. Add the redirection rule the main configuration file, at the default Virtual Host for HTTP:
 
     `sudo nano /opt/bitnami/apache2/conf/bitnami/bitnami.conf`{{execute}}
-
-    `<VirtualHost _default_:80>
+    
+    <pre class="file" data-target="clipboard">
+    <VirtualHost _default_:80>
       DocumentRoot "/opt/bitnami/apache2/htdocs"
       RewriteEngine On
       RewriteCond %{HTTPS} !=on
       RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
         ...
      </VirtualHost>
-    `
+    </pre>
 
     Once you added and saved the configuration, restart the apache server `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}.
     
