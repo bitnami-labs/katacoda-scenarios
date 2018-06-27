@@ -37,4 +37,7 @@ Lets try to create a new certificate on our own and replace the default one. Thi
     `sudo cp server.crt /opt/bitnami/apache2/conf/server.crt`{{execute}}
     `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}
     
+5. We can verify the new certificate in Apache has the correct content:
+
+    `openssl s_client -showcerts -connect localhost:443`
     
