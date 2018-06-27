@@ -6,14 +6,12 @@ Once the certificate is working properly, it is a common practise to redirect al
 
     `sudo nano /opt/bitnami/apache2/conf/bitnami/bitnami.conf`{{execute}}
     
+    And paste the following block into the `<VirtualHost _default_:80>` section:
+    
     <pre class="file" data-target="clipboard">
-    <VirtualHost _default_:80>
-      DocumentRoot "/opt/bitnami/apache2/htdocs"
       RewriteEngine On
       RewriteCond %{HTTPS} !=on
       RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
-        ...
-     </VirtualHost>
     </pre>
 
     Once you added and saved the configuration, restart the apache server `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}.
@@ -42,19 +40,14 @@ Another pretty common configuration is to redirect all the traffic from www.your
 2. The server is currently redirecting all the requests to HTTPS. In this case we only need to add another redirection from 'www.mydomain.com' to 'mydomain.com'
 
     `sudo nano /opt/bitnami/apache2/conf/bitnami.com`{{execute}}
-    
-    `<VirtualHost _default_:443>
-      SSLEngine on
-      DocumentRoot "/opt/bitnami/apache2/htdocs"
-      SSL CertificateFile "/opt/bitnami/apache2/conf/server.crt"
-      SSLCertificateKeyFile "/opt/bitnami/apache2/conf/server.key"
-      
+
+    And paste the following block into the `<VirtualHost _default_:443>` section:
+
+    <pre class="file" data-target="clipboard">
       RewriteEngine On
       RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
       RewriteRule ^(.*)$ https://%1$1 [R=permanent,L]
-      ...
-    </VirtualHost>
-    `
+    </pre>
     
     `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}
     
