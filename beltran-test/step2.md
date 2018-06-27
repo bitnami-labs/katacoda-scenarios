@@ -2,7 +2,7 @@ Lets try to create a new certificate on our own and replace the default one. Thi
 
 1. We need to create a new private key with OpenSSL:
 
-    `genrsa -out server.key 2048`{{execute}}
+    `openssl genrsa -out server.key 2048`{{execute}}
     
     Then copy it to the Apache server default location:
     
