@@ -5,6 +5,7 @@
     "steps": [
       {
         "title": "Step 1",
+        "courseData": "init.sh",
         "text": "step1.md"
       },
       {
@@ -17,7 +18,6 @@
       }
     ],
     "intro": {
-      "courseData": "init.sh",
       "text": "intro.md"
     },
     "finish": {

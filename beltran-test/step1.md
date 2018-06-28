@@ -16,9 +16,15 @@ Lets check the status of the server and the current SSL configuration.
     
     In this case you can see the server certificate does NOT include an ID which matches the server name.
 
+2. In order to simulate a real domain, lets add a sample domain to the '/etc/hosts' file. In this example we will use "mydomain.com"
+
+    `sudo su -c "echo '127.0.0.1   mydomain.com www.mydomain.com' >> /etc/hosts"`{{execute}}
+    
+
 3. Check the main Apache file where it is configured the certificates. You can use your favorite editor but if you are not familiar with any of them you can use 'nano'.
 
     `sudo apt-get install nano`{{execute}}
+    
     `sudo nano /opt/bitnami/apache2/conf/bitnami/bitnami.conf`{{execute}}
     
     You can see the port is configured to 443 and the default options for the default Virtual Host. The most important parameters for SSL are the CertificateFile and the CertificateKeyFile

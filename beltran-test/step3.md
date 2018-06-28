@@ -8,7 +8,7 @@ Once the certificate is working properly, it is a common practise to redirect al
     
     And paste the following block into the `<VirtualHost _default_:80>` section:
     
-    <pre class="file" data-target="clipboard">
+    <pre class="file" data-filename="bitnami.conf" data-target="replace">
       RewriteEngine On
       RewriteCond %{HTTPS} !=on
       RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
@@ -26,11 +26,7 @@ Once the certificate is working properly, it is a common practise to redirect al
 
 Another pretty common configuration is to redirect all the traffic from www.your-domain.com to your-domain.com (or the contrary). Lets see how this configuration would work in our testing environment.
 
-1. Add a sample domain to the '/etc/hosts' file.
-
-    `sudo su -c "echo '127.0.0.1   mydomain.com www.mydomain.com' >> /etc/hosts"`{{execute}}
-    
-    Lets check the current behavior with both domains:
+1. Lets check the current behavior with both domains:
     
     `curl http://www.mydomain.com -L --progress-bar --insecure | grep site-title`{{execute}}
     `curl http://mydomain.com -L --progress-bar --insecure | grep site-title`{{execute}}
