@@ -25,13 +25,17 @@ Lets try to create a new certificate on our own and replace the default one. Thi
     `sudo openssl rsa -noout -text -in server.key -modulus | grep Modulus`{{execute}}
     
     
-3. Lets create a new certificate that matches with the SSL key we just generated. You should use the domain name in the "Common Name" option.
+3. Lets create a new certificate that matches with the SSL key we just generated. You should use the domain name in the "Common Name" option. In this example we will use "mydomain.com".
+
+    If you do not specify the "subj" option, the tool will allow you to provide all the certificate data like City, Country, Department and more.
 
     `cd /home/bitnami`{{execute}}
     
-    `openssl req -new -key server.key -out cert.csr`{{execute}}
+    `openssl req -new -key server.key -subj "/CN=example.com" -out cert.csr`{{execute}}
     
-    Once you generated the Certificate request, you should to the certificate authority. When the certificate authority completes their checks (and probably received payment from you), they will hand over your new certificate to you. In our example we will create a self-signed certificate valid for 1 year.
+    Once you generated the Certificate request, you should to the certificate authority. When the certificate authority completes their checks (and probably received payment from you), they will hand over your new certificate to you. 
+    
+    In our example we will create a self-signed certificate valid for 1 year.
     
     `openssl x509 -in cert.csr -out server.crt -req -signkey server.key -days 365`{{execute}}
     
