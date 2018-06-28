@@ -1,14 +1,14 @@
-Lets try to create a new certificate on our own and replace the default one. This is required when you need to create a real SSL certificate to associate with your domains.
+Lets try to create a new certificate on your own and replacing the default one. This is required when you need to create a real SSL certificate to associate it with your domains.
 
-1. We need to create a new private key with OpenSSL:
+1. You need to create a new private key with OpenSSL:
 
     `openssl genrsa -out server.key 2048`{{execute}}
     
-    Then copy it to the Apache server default location:
+    Copy it to the Apache server default location:
     
     `sudo cp server.key /opt/bitnami/apache2/conf/server.key`{{execute}}
     
-2. You can try to restart the server now and check if it is able to start:
+2. Try to restart the server now and check if it is able to start:
 
     `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}
     
@@ -16,7 +16,7 @@ Lets try to create a new certificate on our own and replace the default one. Thi
     
     `tail /opt/bitnami/apache2/logs/error_log`{{execute}}
     
-    The issue is the key and the cert does not match. It is also possible to check if they match with the following commands:
+    As you can see, the issue is the key and the cert does not match. You can also check the issue by executing the following commands:
     
     `cd /opt/bitnami/apache2/conf`{{execute}}
     
@@ -45,7 +45,7 @@ Lets try to create a new certificate on our own and replace the default one. Thi
     
     `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}
     
-5. We can verify the new certificate in Apache has the correct content:
+5. Verify the new certificate in Apache has the correct content:
 
     `openssl s_client -showcerts -connect localhost:443 | more`{{execute}}
     
