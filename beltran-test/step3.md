@@ -36,7 +36,7 @@ Another pretty common configuration is to redirect all the traffic from www.your
     
 2. The server is currently redirecting all the requests to HTTPS. In this case we only need to add another redirection from 'www.mydomain.com' to 'mydomain.com'
 
-    `sudo nano /opt/bitnami/apache2/conf/bitnami.com`{{execute}}
+    `sudo nano /opt/bitnami/apache2/conf/bitnami/bitnami.conf`{{execute}}
 
     And paste the following block into the `<VirtualHost _default_:443>` section:
 
