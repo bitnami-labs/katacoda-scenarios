@@ -8,7 +8,7 @@ Once the certificate is working properly, it is a common practise to redirect al
     
     And paste the following block into the `<VirtualHost _default_:80>` section:
     
-    <pre class="file" data-filename="bitnami.conf" data-target="replace">
+    <pre class="file" data-target="clipboard">
       RewriteEngine On
       RewriteCond %{HTTPS} !=on
       RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
@@ -29,6 +29,7 @@ Another pretty common configuration is to redirect all the traffic from www.your
 1. Lets check the current behavior with both domains:
     
     `curl http://www.mydomain.com -L --progress-bar --insecure | grep site-title`{{execute}}
+
     `curl http://mydomain.com -L --progress-bar --insecure | grep site-title`{{execute}}
     
     The response from the server contains the exact domain that you are trying to access, the only difference it is redirected to 'https'.
