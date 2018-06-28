@@ -31,7 +31,7 @@ Lets try to create a new certificate on our own and replace the default one. Thi
 
     `cd /home/bitnami`{{execute}}
     
-    `openssl req -new -key server.key -subj "/CN=example.com" -out cert.csr`{{execute}}
+    `openssl req -new -key server.key -subj "/CN=mydomain.com" -out cert.csr`{{execute}}
     
     Once you generated the Certificate request, you should to the certificate authority. When the certificate authority completes their checks (and probably received payment from you), they will hand over your new certificate to you. 
     
