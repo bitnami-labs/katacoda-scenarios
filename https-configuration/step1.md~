@@ -4,7 +4,7 @@ Begin by checking the status of the server and the current SSL configuration.
 
     `sudo /opt/bitnami/ctlscript.sh status`{{execute}}
     
-    At this point, all services should be running. Confirm this by clicking the "Web site" tab in the interactive editor on the right. This should launch a new browser window that displays the WordPress indec page.
+    At this point, all services should be running. Confirm this by clicking the "Web site" tab in the interactive editor on the right. This should launch a new browser window that displays the WordPress index page.
 
 2. Check the preconfigured SSL certificate:
 
@@ -14,25 +14,17 @@ Begin by checking the status of the server and the current SSL configuration.
     
     `tail /opt/bitnami/apache2/logs/error_log`{{execute}}
     
-    You can see that the server certificate does NOT include an ID which matches the server name.
+    You will see that the error arises because the server certificate does NOT match the server name.
 
-3. To simulate a real domain, add a sample domain to the `/etc/hosts` file. For this example, use "mydomain.com"
-
-    `sudo su -c "echo '127.0.0.1   mydomain.com www.mydomain.com' >> /etc/hosts"`{{execute}}
-    
-
-3. Check the main Apache file where the certificates are configured the certificates. You can use your preferred editor. This examples uses 'nano'.
+3. Check the main Apache file where the SSL certificates are configured. You can use your preferred editor. This examples uses `nano`.
 
     `sudo apt-get install nano`{{execute}}
     
     `sudo nano /opt/bitnami/apache2/conf/bitnami/bitnami.conf`{{execute}}
     
-    The port is configured to 443 and the default options for the default Virtual Host. The most important parameters for SSL are the CertificateFile and the CertificateKeyFile.
+    You will see that the default SSL port is set to 443 and the default options have been applied for the virtual Host. The most important parameters in the SSL configuration are the locations of the `CertificateFile` and the `CertificateKeyFile`.
     
     `SSLCertificateFile "/opt/bitnami/apache2/conf/server.crt"
      SSLCertificateKeyFile "/opt/bitnami/apache2/conf/server.key"`
-    
-    Next examples will override the server.crt and server.key files. You can also modify the path and the names of the certificate files in this configuration file.
-    
-    
-    
+
+In the next steps, you will override the preconfigured SSL certificate with a self-signed certificate or a Let's Encrypt certificate generated specifically for your 
