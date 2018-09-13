@@ -28,3 +28,11 @@ Begin by checking the status of the server and the current SSL configuration.
      SSLCertificateKeyFile "/opt/bitnami/apache2/conf/server.key"`
 
 In the next steps, you will override the preconfigured SSL certificate with a new self-signed SSL certificate or a new Let's Encrypt SSL certificate generated specifically for your domain.
+
+To generate and use a new SSL certificate for your domain, you have three options:
+
+You can use a new self-signed certificate (free).
+You can use a certificate verified by a third-party Certificate Authority (CA) (typically on payment of a fee). 
+You can use a Let's Encrypt certificate (free, requires renewal every 90 days)
+
+Proceed to Step 3 for instructions on the first two options, or to Step 4 for instructions on the third option.

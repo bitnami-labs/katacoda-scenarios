@@ -1,54 +1,63 @@
-Once the certificate is working properly, it is a common practise to redirect all the traffic to HTTPS:
+Now that you have understood the Apache SSL configuration, this section guides you through the process of replacing the default SSL certificate with a new self-signed certificate that matches your domain name.
 
-`curl http://localhost -L --progress-bar | grep site-title`{{execute}}
+1. Add your domain name to the `/etc/hosts` file. This guide assumes `example.com`.
 
-1. Add the redirection rule to the main configuration file, at the default Virtual Host for HTTP:
+    `sudo su -c "echo '127.0.0.1   example.com www.example.com' >> /etc/hosts"`{{execute}}
 
-    `sudo nano /opt/bitnami/apache2/conf/bitnami/bitnami.conf`{{execute}}
+2. Create a new private key with OpenSSL:
+
+    `openssl genrsa -out server.key 2048`{{execute}}
     
-    Paste the following block into the `<VirtualHost _default_:80>` section:
+    Copy this key to the `SSLCertificateKeyFile` location, overwriting the one provided by Bitnami:
     
-    <pre class="file" data-target="clipboard">
-      RewriteEngine On
-      RewriteCond %{HTTPS} !=on
-      RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
-    </pre>
-
-    Once you added and saved the configuration, restart the apache server `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}.
+    `sudo cp server.key /opt/bitnami/apache2/conf/server.key`{{execute}}
     
-2. Try to access now to the web application from the terminal:
+3. Restart the Apache server now:
 
-    `curl http://localhost -L --progress-bar | grep site-title`{{execute}}
+    `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}
     
-    The redirection should work properly as it is redirecting to 'https' and it is throwing the error because the certificate is not valid. Adding the option '--insecure' you can see the Blog title again.
+    You will see that the server did not start. To understand why, check the error log:
     
-    `curl http://localhost -L --progress-bar --insecure | grep site-title`{{execute}}
-
-Another popular configuration is to redirect all the traffic from www.your-domain.com to your-domain.com (or the contrary). Lets see how this configuration would work in our testing environment.
-
-1. Check the current behavior using both domains:
+    `tail /opt/bitnami/apache2/logs/error_log`{{execute}}
     
-    `curl http://www.mydomain.com -L --progress-bar --insecure | grep site-title`{{execute}}
-
-    `curl http://mydomain.com -L --progress-bar --insecure | grep site-title`{{execute}}
+    You will see that the error arises because the new private key, understandably, does not match the old SSL certificate. Verify this further by executing the following commands:
     
-    The response from the server contains the exact domain that you are trying to access, the only difference is that one of them is being redirected to 'https'.
+    `cd /opt/bitnami/apache2/conf`{{execute}}
     
-2. The server is currently redirecting all the requests to HTTPS. In this case we only need to add another redirection from 'www.mydomain.com' to 'mydomain.com'
+    `sudo openssl x509 -noout -text -in server.crt -modulus | grep Modulus`{{execute}}
+    
+    `sudo openssl rsa -noout -text -in server.key -modulus | grep Modulus`{{execute}}
 
-    `sudo nano /opt/bitnami/apache2/conf/bitnami/bitnami.conf`{{execute}}
+    You will see that the private key fingerprint does not match the certificate fingerprint.
 
-    And paste the following block into the `<VirtualHost _default_:443>` section:
+4. Next, create an SSL certificate that matches the new private key. This is a two-step process:
 
-    <pre class="file" data-target="clipboard">
-      RewriteEngine On
-      RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-      RewriteRule ^(.*)$ https://%1$1 [R=permanent,L]
-    </pre>
+    * You will first generate a certificate request file.
+    * You will then use the certificate request file to create a self-signed certificate, or give it to a third-party Certificate Authority (CA) to generate one for you.
+
+    Begin by generating a certificate request file. Replace the `example.com` domain name in the command below with your actual domain name.
+  
+    `cd /home/bitnami`{{execute}}
+    
+    `openssl req -new -key server.key -subj "/CN=example.com" -out cert.csr`{{execute}}
+
+    If you omit the `subj` parameter, you will be prompted for information on your city, country, department and more.
+    
+    Once you generate the certificate request, you can approach a third-party Certificate Authority (CA) for verification and certificate generation. When the CA completes its checks (and probably receives payment from you), it will send your new SSL certificate to you. 
+    
+    Alternatively, you can create a self-signed certificate valid for 1 year from the certificate request file:
+    
+    `openssl x509 -in cert.csr -out server.crt -req -signkey server.key -days 365`{{execute}}
+
+  To proceed further, you should have both the private key and a matching SSL certificate (either self-signed or verified by a CA).
+  
+5. Configure Apache to use the new SSL certificate. Copy the certificate to the `SSLCertificateFile` location, overwriting the one provided by Bitnami:
+
+    `sudo cp server.crt /opt/bitnami/apache2/conf/server.crt`{{execute}}
     
     `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}
     
-3. Make sure the redirection works. The response from the server should not include the 'www.' part:
+6. Verify the contents of the new certificate, in particular checking that it uses the correct domain name:
 
-    `curl http://www.mydomain.com -L --progress-bar --insecure | grep site-title`{{execute}}
-    
+    `openssl s_client -showcerts -connect localhost:443 | more`{{execute}}
+   
