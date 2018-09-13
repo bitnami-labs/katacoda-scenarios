@@ -22,7 +22,7 @@ Begin by checking the status of the server and the current SSL configuration.
     
     `sudo nano /opt/bitnami/apache2/conf/bitnami/bitnami.conf`{{execute}}
     
-    You will see that the default SSL port is set to 443 and the default options have been applied for the virtual Host. The most important parameters in the SSL configuration are the locations of the `CertificateFile` and the `CertificateKeyFile`.
+    You will see that the default SSL port is set to 443 and the default options have been applied for the virtual Host. The most important parameters in the SSL configuration are the locations of the `SSLCertificateFile` and the `SSLCertificateKeyFile`.
     
     `SSLCertificateFile "/opt/bitnami/apache2/conf/server.crt"
      SSLCertificateKeyFile "/opt/bitnami/apache2/conf/server.key"`

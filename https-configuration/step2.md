@@ -1,6 +1,6 @@
 Now that you have understood the Apache SSL configuration, this section guides you through the process of replacing the default SSL certificate with a new self-signed certificate that matches your domain name.
 
-1. Add your domain name to the `/etc/hosts` file. This guide uses `example.com`.
+1. Add your domain name to the `/etc/hosts` file. This guide assumes `example.com`.
 
     `sudo su -c "echo '127.0.0.1   example.com www.example.com' >> /etc/hosts"`{{execute}}
 
@@ -10,7 +10,7 @@ Now that you have understood the Apache SSL configuration, this section guides y
 
     `openssl genrsa -out server.key 2048`{{execute}}
     
-    Copy this key to the `CertificateKeyFile` location, overwriting the one provided by Bitnami:
+    Copy this key to the `SSLCertificateKeyFile` location, overwriting the one provided by Bitnami:
     
     `sudo cp server.key /opt/bitnami/apache2/conf/server.key`{{execute}}
     
@@ -18,7 +18,7 @@ Now that you have understood the Apache SSL configuration, this section guides y
 
     `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}
     
-    You will see that it was not possible to start the server. To understand why, check the error log:
+    You will see that the server did not start. To understand why, check the error log:
     
     `tail /opt/bitnami/apache2/logs/error_log`{{execute}}
     
@@ -32,32 +32,34 @@ Now that you have understood the Apache SSL configuration, this section guides y
 
     You will see that the private key fingerprint does not match the certificate fingerprint.
 
-4. The next step is to create a new SSL certificate that matches the new private key. This is a two-step process:
+4. Next, create an SSL certificate that matches the new private key. This is a two-step process:
 
-    You will first generate a certificate request file.
-    You will then use the certificate request file to create a self-signed certificate, or give it to a third-party certificate authority to generate one for you.
+    * You will first generate a certificate request file.
+    * You will then use the certificate request file to create a self-signed certificate, or give it to a third-party certificate authority to generate one for you.
 
-You should use the domain name in the "Common Name" option. This example uses `example.com`.
-
-    If you do not specify the "subj" option, the tool will allow you to provide all the certificate data like City, Country, Department and more.
-
+    Begin by generating a certificate request file. Replace the `example.com` domain name in the command below with your actual domain name.
+  
     `cd /home/bitnami`{{execute}}
     
     `openssl req -new -key server.key -subj "/CN=mydomain.com" -out cert.csr`{{execute}}
+
+    If you omit the `subj` parameter, you will be prompted for information on your city, country, department and more.
     
-    Once you generated the Certificate request, you should to the certificate authority. When the certificate authority completes their checks (and probably received payment from you), they will hand over your new certificate to you. 
+    Once you generate the certificate request, you can approach a third-party certificate authority for verification and certificate generation. When the certificate authority completes its checks (and probably receives payment from you), it will send your new SSL certificate to you. 
     
-    In our example we will create a self-signed certificate valid for 1 year.
+    Alternatively, you can create a self-signed certificate valid for 1 year from the certificate request file:
     
     `openssl x509 -in cert.csr -out server.crt -req -signkey server.key -days 365`{{execute}}
-    
-4. Now we have the certificate already created so we can configure Apache to use it:
+
+  At the end of this step, you will have both the private key and a matching SSL certificate (either self-signed or verified by a certificate authority.
+  
+5. Configure Apache to use the new SSL certificate. Copy the certificate to the `SSLCertificateFile` location, overwriting the one provided by Bitnami:
 
     `sudo cp server.crt /opt/bitnami/apache2/conf/server.crt`{{execute}}
     
     `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}
     
-5. Verify the new certificate in Apache has the correct content:
+6. Verify the new certificate:
 
     `openssl s_client -showcerts -connect localhost:443 | more`{{execute}}
-    
+   
