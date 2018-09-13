@@ -11,9 +11,9 @@ A common practice is to redirect all HTTP traffic to the HTTPS URL. To do this, 
     Paste the following block into the `<VirtualHost _default_:80>` section:
     
     <pre class="file" data-target="clipboard">
-      RewriteEngine On
-      RewriteCond %{HTTPS} !=on
-      RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
     </pre>
 
     Once you have added and saved the configuration, restart the Apache server 

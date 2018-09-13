@@ -13,11 +13,11 @@
         "text": "step2.md"
       },
       {
-        "title": "Create and deploy a self-signed SSL certificate",
+        "title": "Create and deploy a Let's Encrypt SSL certificate",
         "text": "step3.md"
       },
       {
-        "title": "Create and deploy a Let's Encrypt SSL certificate",
+        "title": "Create and deploy a self-signed SSL certificate",
         "text": "step4.md"
       },
       {
