@@ -6,5 +6,6 @@ This guide uses a Bitnami WordPress image launched on a cloud instance to illust
 
 # Assumptions and prerequisites
 
-* You have the public IP address of your application.
+* You have the public IP address of your instance.
 * You have the necessary SSH key pair to log in to your instance.
+* You have configured your domain's DNS settings such that your domain name, with and without the `www` prefix, points to the public IP address of your instance.

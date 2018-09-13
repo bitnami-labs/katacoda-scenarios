@@ -1,4 +1,4 @@
-Now that you have understood the Apache SSL configuration, this section guides you through the process of replacing the default SSL certificate with a new self-signed certificate that matches your domain name.
+As an alternative to Let's Encrypt, you can also use a self-signed SSL certificate or a certificate from a third-party Certificate Authority (CA). This section guides you through these options.
 
 1. Add your domain name to the `/etc/hosts` file. This guide assumes `example.com`.
 
@@ -6,7 +6,7 @@ Now that you have understood the Apache SSL configuration, this section guides y
 
 2. Create a new private key with OpenSSL:
 
-    `openssl genrsa -out server.key 2048`{{execute}}
+    `sudo openssl genrsa -out server.key 2048`{{execute}}
     
     Copy this key to the `SSLCertificateKeyFile` location, overwriting the one provided by Bitnami:
     
@@ -39,7 +39,7 @@ Now that you have understood the Apache SSL configuration, this section guides y
   
     `cd /home/bitnami`{{execute}}
     
-    `openssl req -new -key server.key -subj "/CN=example.com" -out cert.csr`{{execute}}
+    `sudo openssl req -new -key /opt/bitnami/apache2/conf/server.key -subj "/CN=example.com" -out cert.csr`{{execute}}
 
     If you omit the `subj` parameter, you will be prompted for information on your city, country, department and more.
     
@@ -47,7 +47,7 @@ Now that you have understood the Apache SSL configuration, this section guides y
     
     Alternatively, you can create a self-signed certificate valid for 1 year from the certificate request file:
     
-    `openssl x509 -in cert.csr -out server.crt -req -signkey server.key -days 365`{{execute}}
+    `sudo openssl x509 -in cert.csr -out server.crt -req -signkey /opt/bitnami/apache2/conf/server.key -days 365`{{execute}}
 
   To proceed further, you should have both the private key and a matching SSL certificate (either self-signed or verified by a CA).
   
