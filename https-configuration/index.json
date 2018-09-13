@@ -1,5 +1,5 @@
 {
-  "title": "Enable HTTPS support for Apache",
+  "title": "Enable HTTPS support in Apache",
   "description": "Configure and troubleshoot issues with Apache and SSL certificates",
   "details": {
     "steps": [
