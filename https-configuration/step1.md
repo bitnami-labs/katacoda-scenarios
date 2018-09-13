@@ -1,25 +1,24 @@
-Lets check the status of the server and the current SSL configuration.
+Begin by checking the status of the server and the current SSL configuration.
 
-1. Check first that all services are running:
+1. Check that all services are running:
 
     `sudo /opt/bitnami/ctlscript.sh status`{{execute}}
     
-    At this point all services should be running. You can check the WordPress application by clicking the via browser at the web site tab in the right side of the screen.
+    At this point, all services should be running. Confirm this by clicking the "Web site" tab in the interactive editor on the right. This should launch a new browser window that displays the WordPress indec page.
 
-2. Check the already configured SSL certificate:
+2. Check the preconfigured SSL certificate:
 
     `curl  https://localhost`{{execute}}
     
-    The image is configured with a self signed certificate by default. This means that the browser will throw an error any time someone visit your new website. You can also see the error in the Apache error log file:
+    The Bitnami WordPress image is configured with a self-signed certificate by default. Therefore, the user's browser will throw an error every time he or she visits the Bitnami WordPress website using an HTTPS URL. This error is visible in the Apache error log file:
     
     `tail /opt/bitnami/apache2/logs/error_log`{{execute}}
     
-    In that case, you can see that the server certificate does NOT include an ID which matches the server name.
+    You can see that the server certificate does NOT include an ID which matches the server name.
 
-2. In order to simulate a real domain, lets add a sample domain to the '/etc/hosts' file. In this example we will use "mydomain.com"
+3. To simulate a real domain, add a sample domain to the `/etc/hosts` file. For this guide, use `example.com`.
 
-    `sudo su -c "echo '127.0.0.1   mydomain.com www.mydomain.com' >> /etc/hosts"`{{execute}}
-    
+    `sudo su -c "echo '127.0.0.1   example.com www.example.com' >> /etc/hosts"`{{execute}}
 
 3. Check the main Apache file where the certificates are configured the certificates. You can use your preferred editor. This examples uses 'nano'.
 

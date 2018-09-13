@@ -1,6 +1,6 @@
 {
-  "title": "How to enable HTTPS support for Apache",
-  "description": "Configure & troubleshoot issues with Apache and SSL certificates",
+  "title": "Enable HTTPS support for Apache",
+  "description": "Configure and troubleshoot issues with Apache and SSL certificates",
   "details": {
     "steps": [
       {
@@ -9,11 +9,15 @@
         "text": "step1.md"
       },
       {
-        "title": "Create your own certificate",
+        "title": "Create and deploy a self-signed SSL certificate",
         "text": "step2.md"
       },
       {
-        "title": "Implement redirections",
+        "title": "Create and deploy a Let's Encrypt SSL certificate",
+        "text": "step3.md"
+      },
+      {
+        "title": "Implement HTTPS redirection",
         "text": "step3.md"
       }
     ],
