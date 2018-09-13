@@ -32,7 +32,7 @@ A common practice is to redirect all HTTP traffic to the HTTPS URL. To do this, 
 
 ## Redirect requests from www.example.com to example.com
 
-Another popular configuration is to redirect all requests for www.example.com to example.com. To do this, follow the steps below:
+Another popular configuration is to redirect all requests for `www.example.com` to `example.com`. To do this, follow the steps below:
  
 1. Check the current behavior using both domains. Replace the `example.com` domain name in the command below with your actual domain name.
     

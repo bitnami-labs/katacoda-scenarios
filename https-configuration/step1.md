@@ -16,7 +16,7 @@ Begin by checking the status of the server and the current SSL configuration.
     
     You will see that the error arises because the server certificate does NOT match the server name.
 
-3. Check the main Apache file where the SSL certificates are configured. You can use your preferred editor. This examples uses `nano`.
+3. Check the main Apache file where the SSL certificates are configured. You can use your preferred editor. This example uses `nano`.
 
     `sudo apt-get install nano`{{execute}}
     

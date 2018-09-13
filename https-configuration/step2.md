@@ -4,8 +4,6 @@ Now that you have understood the Apache SSL configuration, this section guides y
 
     `sudo su -c "echo '127.0.0.1   example.com www.example.com' >> /etc/hosts"`{{execute}}
 
-    Lets try to create a new certificate on your own and replacing the default one. This is required when you need to create a real SSL certificate to associate it with your domains.
-
 2. Create a new private key with OpenSSL:
 
     `openssl genrsa -out server.key 2048`{{execute}}
@@ -41,7 +39,7 @@ Now that you have understood the Apache SSL configuration, this section guides y
   
     `cd /home/bitnami`{{execute}}
     
-    `openssl req -new -key server.key -subj "/CN=mydomain.com" -out cert.csr`{{execute}}
+    `openssl req -new -key server.key -subj "/CN=example.com" -out cert.csr`{{execute}}
 
     If you omit the `subj` parameter, you will be prompted for information on your city, country, department and more.
     
@@ -59,7 +57,7 @@ Now that you have understood the Apache SSL configuration, this section guides y
     
     `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}
     
-6. Verify the new certificate:
+6. Verify the contents of the new certificate, in particular checking that it uses the correct domain name:
 
     `openssl s_client -showcerts -connect localhost:443 | more`{{execute}}
    
