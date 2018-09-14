@@ -56,6 +56,12 @@ As an alternative to Let's Encrypt, you can also use a self-signed SSL certifica
     `sudo cp server.crt /opt/bitnami/apache2/conf/server.crt`{{execute}}
 
     `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}
+    
+    > In case you see file permission errors or warnings when restarting Apache, ensure that the certificate files are readable only by the *root* user:
+
+    `sudo chown root:root /opt/bitnami/apache2/conf/server*`{{execute}}
+    `sudo chmod 600 /opt/bitnami/apache2/conf/server*`{{execute}}
+
 
 6. Verify the contents of the new certificate, in particular checking that it uses the correct domain name:
 
