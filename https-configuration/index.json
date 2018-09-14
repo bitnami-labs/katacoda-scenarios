@@ -23,17 +23,14 @@
       {
         "title": "Implement HTTPS redirection",
         "text": "step5.md"
-      },
-      {
-        "title": "Feedback",
-        "text": "step6.md"
       }
     ],
     "intro": {
       "text": "intro.md"
     },
     "finish": {
-      "text": "finish.md"
+      "text": "finish.md",
+      "credits": "https://docs.google.com/forms/d/e/1FAIpQLSeM6ymNUYDyKKWrxlUUJYwlKHODQJPqZ6On3SQCAM1B2P3f_g/viewform?usp=sf_link"
     }
   },
   "environment": {
