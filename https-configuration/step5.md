@@ -52,7 +52,7 @@ RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ https://%1$1 [R=permanent,L]
     </pre>
 
-    In case you have also defined a redirection for HTTP URLs to HTTPS URLs, as shown in the previous section, ensure that the above rewrite rules appear before that redirection.
+    > In case you have also defined a redirection for HTTP URLs to HTTPS URLs, as shown in the previous section, ensure that the above rewrite rules appear before that redirection.
 
     Once you have added and saved the configuration, restart the Apache server
 
