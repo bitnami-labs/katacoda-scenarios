@@ -18,7 +18,7 @@ RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
 
     Once you have added and saved the configuration, restart the Apache server
 
-    `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}.
+    `sudo /opt/bitnami/ctlscript.sh restart apache`{{execute}}
 
 2. Test the redirection, by accessing WordPress using its HTTP URL. Replace the `example.com` domain name in the command below with your actual domain name.
 

@@ -14,7 +14,7 @@ The Bitnami Support Tool is included in every Bitnami Stack released since 1 Nov
 
 Run the Bitnami Support Tool as shown below:
 
-    `sudo /opt/bitnami/bnsupport-tool`{{execute}}.
+    `sudo /opt/bitnami/bnsupport-tool`{{execute}}
 
 Go ahead and check for new updates, then enter the directory where your Bitnami stack was installed (this  is */opt/bitnami* by default). The tool displays the information that will be shared with the Bitnami Support Team. Please review it and let a Bitnami support agent know if you do not agree to share some of the information.
 
