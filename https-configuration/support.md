@@ -16,6 +16,6 @@ Run the Bitnami Support Tool as shown below:
 
 `sudo /opt/bitnami/bnsupport-tool`{{execute}}
 
-Go ahead and check for new updates, then enter the directory where your Bitnami stack was installed (this  is */opt/bitnami* by default). The tool displays the information that will be shared with the Bitnami Support Team. Please review it and let a Bitnami support agent know if you do not agree to share some of the information.
+Go ahead and check for new updates, then enter the directory where your Bitnami stack was installed (this  is */opt/bitnami* by default). You have the option to perform various health checks. Once complete, the tool displays the files and information that will be shared with the Bitnami Support Team. Please review this and let a Bitnami support agent know if you do not agree to share some of the information.
 
 The tool will upload the information collected to a secure bucket, which is only accessible by Bitnami Support agents, and print a code. Share this code with the agent in your Bitnami Support ticket.
