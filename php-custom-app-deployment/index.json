@@ -39,6 +39,6 @@
   },
   "backend": {
     "environmentsprotocol": "http",
-    "imageid": "bitnami-lamp"
+    "imageid": "bitnami-wordpress"
   }
 }
