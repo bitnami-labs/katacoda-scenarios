@@ -1,0 +1,44 @@
+{
+  "title": "Deploy a custom PHP/MySQL application",
+  "description": "Deploy a custom PHP/MySQL application on a Bitnami LAMP image",
+  "details": {
+    "steps": [
+      {
+        "title": "Get the application source code",
+        "courseData": "init.sh",
+        "text": "step1.md"
+      },
+      {
+        "title": "Create and configure database access",
+        "text": "step2.md"
+      },
+      {
+        "title": "Modify Apache server configuration",
+        "text": "step3.md"
+      },
+      {
+        "title": "Test the application",
+        "text": "step4.md"
+      },
+      {
+        "title": "We're here to help!",
+        "text": "support.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "showdashboard": true,
+    "dashboards": [{"name": "Web site", "port": 80}],
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "environmentsprotocol": "http",
+    "imageid": "bitnami-wordpress"
+  }
+}

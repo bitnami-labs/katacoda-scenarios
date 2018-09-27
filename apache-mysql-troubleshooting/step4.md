@@ -2,7 +2,7 @@ As part of the troubleshooting process, it is often necessary to make changes to
 
 ## Backup
 
-To back up all your MySQL databases, use the command below. Enter the database *root* password when prompted.
+To back up all your MySQL databases, use the command below. Enter the database `root` password when prompted.
 
 `cd /home/bitnami`{{execute}}
 
@@ -14,7 +14,7 @@ This operation will create a single file containing the data from all your MySQL
 
 ## Restore
 
-To restore the contents of the backup file, use the command below. Enter the database *root* password when prompted.
+To restore the contents of the backup file, use the command below. Enter the database `root` password when prompted.
 
 `cd /home/bitnami`{{execute}}
 

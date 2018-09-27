@@ -8,4 +8,4 @@ This guide uses a Bitnami LAMP image containing a PHP script that is deliberatel
 
 * You have the public IP address of your instance.
 * You have the necessary SSH key pair to log in to your instance ([more information](https://docs.bitnami.com/general/faq/get-started/connect-ssh/)).
-* You have the database *root* password for your instance ([more information](https://docs.bitnami.com/general/faq/get-started/find-credentials/)).
+* You have the database `root` password for your instance ([more information](https://docs.bitnami.com/general/faq/get-started/find-credentials/)).
