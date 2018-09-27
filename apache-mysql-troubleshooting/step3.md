@@ -18,10 +18,10 @@ The script again displays an error message related to the database. To identify 
 
     `sudo nano /opt/bitnami/apache2/htdocs/example.php`{{execute}}
 
-    You will quickly notice that the SQL query on line 15 refers to table name `data` whereas the correct table name is `items`. Correct the error by updating the table name on line 15 and save the PHP script.
+    You will quickly notice that the SQL query on line 15 refers to a table named `data` whereas the correct table name is `items`. Correct the error by updating the table name on line 15 and save the PHP script.
 
 Try the script again:
 
 `curl http://localhost/example.php`{{execute}}
 
-You should see that the script now runs correctly and displays the records from the database.
+You should see the script running correctly and displaying the records from the database.

@@ -4,13 +4,13 @@ The final step is to create the necessary Apache configuration files for the app
 
     `sudo nano /opt/bitnami/apps/myapp/conf/httpd-prefix.conf`{{execute}}
 
-    Add the line below to it:
+    Add the lines below to it:
 
     `Alias /myapp/ "/opt/bitnami/apps/myapp/htdocs/"
     Alias /myapp "/opt/bitnami/apps/myapp/htdocs/"
     Include "/opt/bitnami/apps/myapp/conf/httpd-app.conf"`
 
-2. Create the /opt/bitnami/apps/myapp/conf/httpd-app.conf file:
+2. Create the `/opt/bitnami/apps/myapp/conf/httpd-app.conf` file:
 
     `sudo nano /opt/bitnami/apps/myapp/conf/httpd-app.conf`{{execute}}
 

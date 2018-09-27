@@ -1,21 +1,31 @@
-The PHP script in this example should connect to the MySQL database, retrieve a list of records and display them as a Web page. Use the command below to access it:
+This guide uses a simple PHP/MySQL example application from GitHub. However, the general principles described will apply to any custom PHP/MySQL application.
 
-`curl http://localhost/example.php`{{execute}}
+Begin by installing Git and downloading the application source code from GitHub. If your application source code is stored elsewhere, you can also transfer it to the instance using SFTP, email or any other transfer mechanism.
 
-As you can see, there is no output displayed. This implies that there was an error in the script. To locate and resolve the error, follow the steps below:
+1. Check that all services are running:
 
-1. Check the Apache error log:
+    `sudo /opt/bitnami/ctlscript.sh status`{{execute}}
 
-    `sudo tail /opt/bitnami/apache2/logs/error_log`{{execute}}
+    At this point, all services should be running. Confirm this by clicking the "Web site" tab in the interactive editor on the right. This should launch a new browser window that displays the LAMP index page.
 
-    You will see that the source of the error is a syntax error on line 6 of the script.
+2. Install Git and a text editor. This example uses `nano` but you can use any editor that you prefer:
 
-2. Check the PHP script. You can use your preferred editor. This example uses `nano`.
+    `sudo apt-get install git`{{execute}}
 
     `sudo apt-get install nano`{{execute}}
+    
+3. Create the necessary directory structure for the application. In this guide, the example application will be stored in the `/opt/bitnami/apps/myapp` directory.
 
-    `sudo nano /opt/bitnami/apache2/htdocs/example.php`{{execute}}
+    `sudo mkdir /opt/bitnami/apps/myapp`{{execute}}
+    
+    `sudo mkdir /opt/bitnami/apps/myapp/htdocs`{{execute}}
+    
+    `sudo mkdir /opt/bitnami/apps/myapp/conf`{{execute}}
 
-    You will see that there is a missing semi-colon at the end of line 5. Add this to resolve the syntax error and save the file. 
+4. Change to the application directory and clone the application source code repository:
 
-Continue to the next step to see if this resolves the error.
+    `cd /opt/bitnami/apps/myapp/htdocs/`{{execute}}
+
+    `sudo git clone https://github.com/chapagain/crud-php-simple.git .`{{execute}}
+
+In the next step, you will create a MySQL database and user account for the application, and update the application source code with the necessary access credentials.
