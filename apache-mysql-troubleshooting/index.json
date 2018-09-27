@@ -1,0 +1,44 @@
+{
+  "title": "Troubleshoot Apache and MySQL issues",
+  "description": "Troubleshoot issues with Apache and MySQL",
+  "details": {
+    "steps": [
+      {
+        "title": "Check the Apache logs",
+        "courseData": "init.sh",
+        "text": "step1.md"
+      },
+      {
+        "title": "Check the MySQL logs",
+        "text": "step2.md"
+      },
+      {
+        "title": "Check MySQL connectivity",
+        "text": "step3.md"
+      },
+      {
+        "title": "Backup and restore MySQL data",
+        "text": "step4.md"
+      },
+      {
+        "title": "We're here to help!",
+        "text": "support.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "showdashboard": true,
+    "dashboards": [{"name": "Web site", "port": 80}],
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "environmentsprotocol": "http",
+    "imageid": "bitnami-wordpress"
+  }
+}
