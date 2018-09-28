@@ -2,4 +2,4 @@ Test the application by browsing to `http://HOST/myapp`. You can do this by clic
 
 `curl http://localhost/myapp/`{{execute}}
 
-In case of errors, try our [troubleshooting scenario](https://www.katacoda.com/vikram-bitnami/scenarios/apache-mysql-troubleshooting).
+In case of errors, try our [troubleshooting scenario](https://www.katacoda.com/bitnami/scenarios/apache-mysql-troubleshooting).
