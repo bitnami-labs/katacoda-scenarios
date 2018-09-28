@@ -7,7 +7,7 @@ The next step is to create a MySQL database and user account for the application
 
 Before proceeding, make sure that you have the database `root` password. You can obtain the password using the following command: 
 
-`cat ~\bitnami_credentials`{{execute}}
+`cat ~/bitnami_credentials`{{execute}}
 
 1. Use the MySQL command-line client to import the application database using the command below. Enter the database `root` password when prompted:
 
