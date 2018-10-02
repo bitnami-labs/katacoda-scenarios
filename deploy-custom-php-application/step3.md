@@ -7,9 +7,9 @@ The final step is to create the necessary Apache configuration files for the app
     Add the lines below to it:
 
     ```
-    Alias /myapp/ "/opt/bitnami/apps/myapp/htdocs/"
-    Alias /myapp "/opt/bitnami/apps/myapp/htdocs/"
-    Include "/opt/bitnami/apps/myapp/conf/httpd-app.conf"
+Alias /myapp/ "/opt/bitnami/apps/myapp/htdocs/"
+Alias /myapp "/opt/bitnami/apps/myapp/htdocs/"
+Include "/opt/bitnami/apps/myapp/conf/httpd-app.conf"
     ```
 
 2. Create the `/opt/bitnami/apps/myapp/conf/httpd-app.conf` file:
@@ -18,17 +18,19 @@ The final step is to create the necessary Apache configuration files for the app
 
     Add the lines below to it:
     
-    `\<Directory /opt/bitnami/apps/myapp/htdocs/\>
-        Options +FollowSymLinks
-        AllowOverride None
-        <IfVersion < 2.3 >
-        Order allow,deny
-        Allow from all
-        </IfVersion>
-        <IfVersion >= 2.3>
-        Require all granted
-        </IfVersion>
-    \</Directory\>`
+    ```
+<Directory /opt/bitnami/apps/myapp/htdocs/>
+    Options +FollowSymLinks
+    AllowOverride None
+    <IfVersion < 2.3 >
+    Order allow,deny
+    Allow from all
+    </IfVersion>
+    <IfVersion >= 2.3>
+    Require all granted
+    </IfVersion>
+</Directory>
+    ```
 
     > NOTE: If your application uses `.htaccess` files, you should change the `AllowOverride None` option to `AllowOverride All`.
 
