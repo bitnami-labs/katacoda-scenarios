@@ -10,7 +10,7 @@ The final step is to create the necessary Apache configuration files for the app
 Alias /myapp/ "/opt/bitnami/apps/myapp/htdocs/"
 Alias /myapp "/opt/bitnami/apps/myapp/htdocs/"
 Include "/opt/bitnami/apps/myapp/conf/httpd-app.conf"
-    ```
+    ```{{copy}}
 
 2. Create the `/opt/bitnami/apps/myapp/conf/httpd-app.conf` file:
 
@@ -30,7 +30,7 @@ Include "/opt/bitnami/apps/myapp/conf/httpd-app.conf"
     Require all granted
     </IfVersion>
 </Directory>
-    ```
+    ```{{copy}}
 
     > NOTE: If your application uses `.htaccess` files, you should change the `AllowOverride None` option to `AllowOverride All`.
 
@@ -40,7 +40,7 @@ Include "/opt/bitnami/apps/myapp/conf/httpd-app.conf"
     
     Add the lines below to it:
 
-    `Include "/opt/bitnami/apps/myapp/conf/httpd-prefix.conf"`{{execute}}
+    `Include "/opt/bitnami/apps/myapp/conf/httpd-prefix.conf"`{{copy}}
 
 4. Restart the Apache server:
 
