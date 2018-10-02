@@ -13,8 +13,12 @@ The script again displays an error message related to the database. To identify 
     `SHOW DATABASES;`{{execute}}
     
     `SHOW TABLES FROM myapp;`{{execute}}
+
+2. Exit the MySQL command-line tool:
+
+    `exit`{{execute}}
     
-2. Check the PHP script:
+3. Check the PHP script:
 
     `sudo nano /opt/bitnami/apache2/htdocs/example.php`{{execute}}
 
