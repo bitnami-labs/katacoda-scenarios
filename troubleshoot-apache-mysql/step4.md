@@ -1,5 +1,9 @@
 As part of the troubleshooting process, it is often necessary to make changes to system configuration and files. Bitnami recommends that you always back up your data before making any such changes.
 
+Before proceeding, make sure that you have the database `root` password. You can obtain the password using the following command: 
+
+`cat ~/bitnami_credentials`{{execute}}
+
 ## Backup
 
 To back up all your MySQL databases, use the command below. Enter the database `root` password when prompted.
